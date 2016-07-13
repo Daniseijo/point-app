@@ -14,6 +14,7 @@
 		5E4434701D353CE600C5439F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E44346E1D353CE600C5439F /* LaunchScreen.storyboard */; };
 		5E44347B1D353CE700C5439F /* PointAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E44347A1D353CE700C5439F /* PointAppTests.swift */; };
 		5E4434861D353CE700C5439F /* PointAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4434851D353CE700C5439F /* PointAppUITests.swift */; };
+		5E4434941D368C6C00C5439F /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4434931D368C6C00C5439F /* Place.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		5E4434811D353CE700C5439F /* PointAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PointAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E4434851D353CE700C5439F /* PointAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointAppUITests.swift; sourceTree = "<group>"; };
 		5E4434871D353CE700C5439F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5E4434931D368C6C00C5439F /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Place.swift; path = Model/Place.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		5E4434641D353CE500C5439F /* PointApp */ = {
 			isa = PBXGroup;
 			children = (
+				5E4434951D369F6400C5439F /* Model */,
 				5E4434651D353CE500C5439F /* AppDelegate.swift */,
 				5E4434671D353CE500C5439F /* ViewController.swift */,
 				5E4434691D353CE500C5439F /* Main.storyboard */,
@@ -123,6 +126,14 @@
 				5E4434871D353CE700C5439F /* Info.plist */,
 			);
 			path = PointAppUITests;
+			sourceTree = "<group>";
+		};
+		5E4434951D369F6400C5439F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5E4434931D368C6C00C5439F /* Place.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E4434941D368C6C00C5439F /* Place.swift in Sources */,
 				5E4434681D353CE500C5439F /* ViewController.swift in Sources */,
 				5E4434661D353CE500C5439F /* AppDelegate.swift in Sources */,
 			);
@@ -487,6 +499,7 @@
 				5E44348C1D353CE700C5439F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5E44348D1D353CE700C5439F /* Build configuration list for PBXNativeTarget "PointAppTests" */ = {
 			isa = XCConfigurationList;
@@ -495,6 +508,7 @@
 				5E44348F1D353CE700C5439F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5E4434901D353CE700C5439F /* Build configuration list for PBXNativeTarget "PointAppUITests" */ = {
 			isa = XCConfigurationList;
@@ -503,6 +517,7 @@
 				5E4434921D353CE700C5439F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
