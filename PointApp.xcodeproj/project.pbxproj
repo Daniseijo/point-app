@@ -15,6 +15,8 @@
 		5E44347B1D353CE700C5439F /* PointAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E44347A1D353CE700C5439F /* PointAppTests.swift */; };
 		5E4434861D353CE700C5439F /* PointAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4434851D353CE700C5439F /* PointAppUITests.swift */; };
 		5E4434941D368C6C00C5439F /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4434931D368C6C00C5439F /* Place.swift */; };
+		5E74CDE01D5C6A1B00140490 /* DescPhotoImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E74CDDF1D5C6A1B00140490 /* DescPhotoImageView.swift */; };
+		5E74CDE91D5C730400140490 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E74CDE81D5C730400140490 /* FXBlurView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,10 @@
 		5E4434851D353CE700C5439F /* PointAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointAppUITests.swift; sourceTree = "<group>"; };
 		5E4434871D353CE700C5439F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E4434931D368C6C00C5439F /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Place.swift; path = Model/Place.swift; sourceTree = "<group>"; };
+		5E74CDDF1D5C6A1B00140490 /* DescPhotoImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DescPhotoImageView.swift; path = View/DescPhotoImageView.swift; sourceTree = "<group>"; };
+		5E74CDE61D5C730300140490 /* PointApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PointApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		5E74CDE71D5C730400140490 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
+		5E74CDE81D5C730400140490 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +105,10 @@
 		5E4434641D353CE500C5439F /* PointApp */ = {
 			isa = PBXGroup;
 			children = (
+				5E74CDE11D5C6A2B00140490 /* View */,
 				5E4434951D369F6400C5439F /* Model */,
 				5E4434651D353CE500C5439F /* AppDelegate.swift */,
+				5E74CDE21D5C71FF00140490 /* Third Party */,
 				5E4434671D353CE500C5439F /* ViewController.swift */,
 				5E4434691D353CE500C5439F /* Main.storyboard */,
 				5E44346C1D353CE600C5439F /* Assets.xcassets */,
@@ -134,6 +142,24 @@
 				5E4434931D368C6C00C5439F /* Place.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		5E74CDE11D5C6A2B00140490 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5E74CDDF1D5C6A1B00140490 /* DescPhotoImageView.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		5E74CDE21D5C71FF00140490 /* Third Party */ = {
+			isa = PBXGroup;
+			children = (
+				5E74CDE71D5C730400140490 /* FXBlurView.h */,
+				5E74CDE81D5C730400140490 /* FXBlurView.m */,
+				5E74CDE61D5C730300140490 /* PointApp-Bridging-Header.h */,
+			);
+			path = "Third Party";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,6 +296,8 @@
 			files = (
 				5E4434941D368C6C00C5439F /* Place.swift in Sources */,
 				5E4434681D353CE500C5439F /* ViewController.swift in Sources */,
+				5E74CDE91D5C730400140490 /* FXBlurView.m in Sources */,
+				5E74CDE01D5C6A1B00140490 /* DescPhotoImageView.swift in Sources */,
 				5E4434661D353CE500C5439F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,12 +440,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = PointApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.daniseijo.PointApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "PointApp/Third Party/PointApp-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -425,12 +456,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = PointApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.daniseijo.PointApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "PointApp/Third Party/PointApp-Bridging-Header.h";
 			};
 			name = Release;
 		};

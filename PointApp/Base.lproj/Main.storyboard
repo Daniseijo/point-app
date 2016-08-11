@@ -1,25 +1,109 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PointApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LKO-j5-9xv" userLabel="Header">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="128"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Museo de la ETSIT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1F-6m-Be9" userLabel="Header Label">
+                                        <rect key="frame" x="228" y="125" width="143" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="c1F-6m-Be9" firstAttribute="centerX" secondItem="LKO-j5-9xv" secondAttribute="centerX" id="VFE-pC-52J"/>
+                                    <constraint firstAttribute="height" constant="128" id="aXC-Ge-yx1"/>
+                                    <constraint firstItem="c1F-6m-Be9" firstAttribute="top" secondItem="LKO-j5-9xv" secondAttribute="top" constant="125" id="dxP-hA-kSW"/>
+                                </constraints>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2LM-br-1Wz">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="801"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Museo de la ETSIT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WFL-Q1-xcL">
+                                        <rect key="frame" x="229" y="223" width="143" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menu-board" translatesAutoresizingMaskIntoConstraints="NO" id="gGC-c2-dIe" customClass="DescPhotoImageView" customModule="PointApp" customModuleProvider="target">
+                                        <rect key="frame" x="196" y="87" width="208" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="208" id="pWX-Gx-rmX"/>
+                                            <constraint firstAttribute="height" constant="128" id="vEY-5p-H09"/>
+                                        </constraints>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="197" y="87" width="207" height="128"/>
+                                        </variation>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pHu-AJ-Mgz">
+                                        <rect key="frame" x="0.0" y="252" width="600" height="549"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="549" id="Btb-Be-rWP"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="pHu-AJ-Mgz" secondAttribute="trailing" id="EZ2-r6-bgm"/>
+                                    <constraint firstItem="gGC-c2-dIe" firstAttribute="top" secondItem="2LM-br-1Wz" secondAttribute="top" constant="87" id="L0r-3F-R7b"/>
+                                    <constraint firstItem="pHu-AJ-Mgz" firstAttribute="top" secondItem="WFL-Q1-xcL" secondAttribute="bottom" constant="8" symbolic="YES" id="OoU-cx-iFn"/>
+                                    <constraint firstItem="WFL-Q1-xcL" firstAttribute="centerX" secondItem="pHu-AJ-Mgz" secondAttribute="centerX" id="ViU-fN-OpV"/>
+                                    <constraint firstAttribute="bottom" secondItem="pHu-AJ-Mgz" secondAttribute="bottom" id="Wiz-C7-qUC"/>
+                                    <constraint firstItem="pHu-AJ-Mgz" firstAttribute="leading" secondItem="2LM-br-1Wz" secondAttribute="leading" id="giF-RD-TlK"/>
+                                    <constraint firstItem="gGC-c2-dIe" firstAttribute="centerX" secondItem="WFL-Q1-xcL" secondAttribute="centerX" id="kHX-tu-sjD"/>
+                                    <constraint firstItem="gGC-c2-dIe" firstAttribute="centerX" secondItem="2LM-br-1Wz" secondAttribute="centerX" id="qqc-IF-rDd"/>
+                                    <constraint firstItem="WFL-Q1-xcL" firstAttribute="top" secondItem="gGC-c2-dIe" secondAttribute="bottom" constant="8" symbolic="YES" id="qrY-PG-fx1"/>
+                                </constraints>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
+                                </variation>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LKO-j5-9xv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="5io-Jt-CZ4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="LKO-j5-9xv" secondAttribute="trailing" constant="-20" id="RUF-tS-wTk"/>
+                            <constraint firstItem="2LM-br-1Wz" firstAttribute="top" secondItem="LKO-j5-9xv" secondAttribute="top" id="U7B-mi-Ugl"/>
+                            <constraint firstItem="2LM-br-1Wz" firstAttribute="leading" secondItem="LKO-j5-9xv" secondAttribute="leading" id="XJA-Ca-SRm"/>
+                            <constraint firstItem="LKO-j5-9xv" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="YHH-Up-AwB"/>
+                            <constraint firstItem="2LM-br-1Wz" firstAttribute="trailing" secondItem="LKO-j5-9xv" secondAttribute="trailing" id="ich-Y8-PWj"/>
+                            <constraint firstItem="2LM-br-1Wz" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="j70-EU-g8b"/>
+                        </constraints>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="800"/>
+                    <connections>
+                        <outlet property="descPhoto" destination="gGC-c2-dIe" id="Y8M-A2-vF6"/>
+                        <outlet property="header" destination="LKO-j5-9xv" id="XTY-Ve-D4B"/>
+                        <outlet property="headerLabel" destination="c1F-6m-Be9" id="f9g-hq-gn9"/>
+                        <outlet property="scrollView" destination="2LM-br-1Wz" id="apc-Iw-74m"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="565" y="450"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="menu-board" width="300" height="186"/>
+    </resources>
 </document>
