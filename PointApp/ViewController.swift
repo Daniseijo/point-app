@@ -7,25 +7,31 @@
 //
 
 import UIKit
+import ImageViewer
 
 let offset_HeaderStop:CGFloat = 40.0 // At this offset the Header stops its transformations
-let offset_B_LabelHeader:CGFloat = 95.0 // At this offset the Black label reaches the Header
+let offset_B_LabelHeader:CGFloat = 162.0 // At this offset the Black label reaches the Header
 let distance_W_LabelHeader:CGFloat = 35.0 // The distance between the bottom of the Header and the top of the White Label
+let distance_W_ButtonHeader:CGFloat = 42.0 // The distance between the bottom of the Header and the top of the White Label
 
 class ViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var descPhoto: UIImageView!
+    @IBOutlet weak var descPhoto: UIButton!
     @IBOutlet weak var header: UIView!
+    @IBOutlet weak var descHeaderBtn: UIButton!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet var headerImageView:UIImageView!
     @IBOutlet var headerBlurImageView:UIImageView!
+    
     var blurredHeaderImageView:UIImageView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         scrollView.delegate = self
+        descPhoto.imageView?.contentMode = .ScaleAspectFit
+        descHeaderBtn.imageView?.contentMode = .ScaleAspectFit
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -52,7 +58,27 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBAction func descPhotoTap(sender: UIButton) {
+        let imageProvider = SomeImageProvider()
+        let buttonAssets = CloseButtonAssets(normal: UIImage(named:"close_normal")!, highlighted: UIImage(named: "close_highlighted"))
+        let configuration = ImageViewerConfiguration(imageSize: CGSize(width: 10, height: 10), closeButtonAssets: buttonAssets)
+        
+        let imageViewer = ImageViewerController(imageProvider: imageProvider, configuration: configuration, displacedView: sender)
+        self.presentImageViewer(imageViewer)
+    }
 
+}
+
+class SomeImageProvider: ImageProvider {
+    
+    func provideImage(completion: UIImage? -> Void) {
+        completion(UIImage(named: "menu-board"))
+    }
+    
+    func provideImage(atIndex index: Int, completion: UIImage? -> Void) {
+        completion(UIImage(named: "menu-board"))
+    }
 }
 
 extension ViewController {
@@ -66,8 +92,8 @@ extension ViewController {
         if offset < 0 {
             
             let headerScaleFactor:CGFloat = -(offset) / header.bounds.height
-            let headerSizevariation = ((header.bounds.height * (1.0 + headerScaleFactor)) - header.bounds.height)/2.0
-            headerTransform = CATransform3DTranslate(headerTransform, 0, headerSizevariation, 0)
+            let headerSizeVariation = ((header.bounds.height * (1.0 + headerScaleFactor)) - header.bounds.height)/2.0
+            headerTransform = CATransform3DTranslate(headerTransform, 0, headerSizeVariation, 0)
             headerTransform = CATransform3DScale(headerTransform, 1.0 + headerScaleFactor, 1.0 + headerScaleFactor, 0)
             
             header.layer.transform = headerTransform
@@ -86,6 +112,10 @@ extension ViewController {
             let labelTransform = CATransform3DMakeTranslation(0, max(-distance_W_LabelHeader, offset_B_LabelHeader - offset), 0)
             headerLabel.layer.transform = labelTransform
             
+            var buttonTransform = CATransform3DMakeTranslation(0, max(-distance_W_ButtonHeader, offset_B_LabelHeader - offset), 0)
+            buttonTransform = CATransform3DScale(buttonTransform, 1.0,  1.0, 1.0)
+            descHeaderBtn.layer.transform = buttonTransform
+            
             //  ------------ Blur
             
             headerBlurImageView?.alpha = min (1.0, (offset - offset_B_LabelHeader)/distance_W_LabelHeader)
@@ -95,7 +125,7 @@ extension ViewController {
             let avatarScaleFactor = (min(offset_HeaderStop, offset)) / descPhoto.bounds.height / 1.4 // Slow down the animation
             let avatarSizeVariation = ((descPhoto.bounds.height * (1.0 + avatarScaleFactor)) - descPhoto.bounds.height) / 2.0
             avatarTransform = CATransform3DTranslate(avatarTransform, 0, avatarSizeVariation, 0)
-            avatarTransform = CATransform3DScale(avatarTransform, 1.0 - avatarScaleFactor, 1.0 - avatarScaleFactor, 0)
+            avatarTransform = CATransform3DScale(avatarTransform,  1.0 - avatarScaleFactor, 1.0 - avatarScaleFactor, 1)
             
             if offset <= offset_HeaderStop {
                 
@@ -103,7 +133,7 @@ extension ViewController {
                     header.layer.zPosition = 0
                 }
                 
-            }else {
+            } else {
                 if descPhoto.layer.zPosition >= header.layer.zPosition{
                     header.layer.zPosition = 2
                 }
