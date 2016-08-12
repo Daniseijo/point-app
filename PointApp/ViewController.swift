@@ -12,7 +12,7 @@ import ImageViewer
 let offset_HeaderStop:CGFloat = 40.0 // At this offset the Header stops its transformations
 let offset_B_LabelHeader:CGFloat = 162.0 // At this offset the Black label reaches the Header
 let distance_W_LabelHeader:CGFloat = 35.0 // The distance between the bottom of the Header and the top of the White Label
-let distance_W_ButtonHeader:CGFloat = 42.0 // The distance between the bottom of the Header and the top of the White Label
+let distance_W_ButtonHeader:CGFloat = 45.0 // The distance between the bottom of the Header and the top of the White Label
 
 class ViewController: UIViewController, UIScrollViewDelegate {
 
@@ -21,6 +21,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var header: UIView!
     @IBOutlet weak var descHeaderBtn: UIButton!
     @IBOutlet weak var headerLabel: UILabel!
+    @IBOutlet weak var addElementBtn: UIButton!
+    @IBOutlet weak var placeHeaderLabel: UILabel!
     @IBOutlet var headerImageView:UIImageView!
     @IBOutlet var headerBlurImageView:UIImageView!
     
@@ -32,6 +34,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         scrollView.delegate = self
         descPhoto.imageView?.contentMode = .ScaleAspectFit
         descHeaderBtn.imageView?.contentMode = .ScaleAspectFit
+        addElementBtn.layer.zPosition = 3
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -66,6 +69,10 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         
         let imageViewer = ImageViewerController(imageProvider: imageProvider, configuration: configuration, displacedView: sender)
         self.presentImageViewer(imageViewer)
+    }
+    
+    @IBAction func addElement(sender: UIButton) {
+        print("Add Element Pressed")
     }
 
 }
@@ -119,6 +126,8 @@ extension ViewController {
             //  ------------ Blur
             
             headerBlurImageView?.alpha = min (1.0, (offset - offset_B_LabelHeader)/distance_W_LabelHeader)
+            print((offset_B_LabelHeader - offset) / offset_B_LabelHeader)
+            placeHeaderLabel.alpha = min(1.0, (offset_HeaderStop - offset) / offset_HeaderStop)
             
             // Avatar -----------
             
