@@ -74,7 +74,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     @IBAction func addElement(sender: UIButton) {
         print("Add Element Pressed")
     }
-
 }
 
 class SomeImageProvider: ImageProvider {
@@ -126,8 +125,6 @@ extension ViewController {
             //  ------------ Blur
             
             headerBlurImageView?.alpha = min (1.0, (offset - offset_B_LabelHeader)/distance_W_LabelHeader)
-            print((offset_B_LabelHeader - offset) / offset_B_LabelHeader)
-            placeHeaderLabel.alpha = min(1.0, (offset_HeaderStop - offset) / offset_HeaderStop)
             
             // Avatar -----------
             
@@ -148,6 +145,9 @@ extension ViewController {
                 }
             }
         }
+        
+        // ------------- Place Label
+        placeHeaderLabel.alpha = min(1.0, (offset_HeaderStop - offset) / offset_HeaderStop)
         
         // Apply Transformations
         

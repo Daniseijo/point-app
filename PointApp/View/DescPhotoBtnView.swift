@@ -8,11 +8,11 @@
 
 import UIKit
 
-class DescPhotoImageView: UIImageView {
+class DescPhotoBtnView: UIButton {
 
     override func awakeFromNib() {
-        self.layer.cornerRadius = 10.0
-        self.layer.borderColor = UIColor.whiteColor().CGColor
-        self.layer.borderWidth = 3.0
+        self.imageView!.layer.cornerRadius = 10.0
+        self.imageView!.layer.borderColor = UIColor.whiteColor().CGColor
+        self.imageView!.layer.borderWidth = 3.0
     }
 }
