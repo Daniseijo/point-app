@@ -8,11 +8,21 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UITableViewController, UITableViewDelegate {
 
+    private var allPlaces = [Place]()
+    private var currentPlaceData: (titles:[String], values:[String])?
+    private var currentPlaceIndex = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.navigationController?.navigationBar.translucent = false
+        currentPlaceIndex = 0
+        
+        allPlaces = PointAppAPI.sharedInstance.getPlaces()
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
