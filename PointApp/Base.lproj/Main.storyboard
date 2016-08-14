@@ -49,7 +49,7 @@
                                     <constraint firstItem="c1F-6m-Be9" firstAttribute="top" secondItem="LKO-j5-9xv" secondAttribute="top" constant="104" id="yjh-EK-xEH"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2LM-br-1Wz">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2LM-br-1Wz">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aparatófono" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WFL-Q1-xcL">
@@ -73,10 +73,10 @@
                                         </connections>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxc-mA-5Da">
-                                        <rect key="frame" x="20" y="260" width="560" height="699"/>
+                                        <rect key="frame" x="20" y="260" width="560" height="520"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="699" id="qQl-vN-erG"/>
+                                            <constraint firstAttribute="height" constant="520" placeholder="YES" id="qQl-vN-erG"/>
                                         </constraints>
                                         <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -87,7 +87,7 @@
                                     <constraint firstItem="WFL-Q1-xcL" firstAttribute="leading" secondItem="2LM-br-1Wz" secondAttribute="leading" constant="8" id="FDk-ry-c9t"/>
                                     <constraint firstItem="bSV-hG-f0P" firstAttribute="top" secondItem="2LM-br-1Wz" secondAttribute="top" constant="79" id="G5W-tU-7lA"/>
                                     <constraint firstItem="bSV-hG-f0P" firstAttribute="centerX" secondItem="2LM-br-1Wz" secondAttribute="centerX" id="Vwn-hO-1Rc"/>
-                                    <constraint firstAttribute="bottom" secondItem="dxc-mA-5Da" secondAttribute="bottom" constant="-159" id="Xcc-lk-0LX"/>
+                                    <constraint firstAttribute="bottom" secondItem="dxc-mA-5Da" secondAttribute="bottom" constant="20" id="Xcc-lk-0LX"/>
                                     <constraint firstAttribute="trailing" secondItem="WFL-Q1-xcL" secondAttribute="trailing" constant="8" id="c2k-nH-Ogw"/>
                                     <constraint firstItem="WFL-Q1-xcL" firstAttribute="top" secondItem="bSV-hG-f0P" secondAttribute="bottom" constant="8" id="e91-fP-5xE"/>
                                     <constraint firstItem="WFL-Q1-xcL" firstAttribute="centerX" secondItem="2LM-br-1Wz" secondAttribute="centerX" id="hWs-vQ-BmA"/>
@@ -149,6 +149,7 @@
                         <outlet property="headerLabel" destination="c1F-6m-Be9" id="f9g-hq-gn9"/>
                         <outlet property="placeHeaderLabel" destination="JMi-ET-vjr" id="dtD-wC-gR0"/>
                         <outlet property="scrollView" destination="2LM-br-1Wz" id="apc-Iw-74m"/>
+                        <outlet property="textDesc" destination="dxc-mA-5Da" id="19B-Vw-0fx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

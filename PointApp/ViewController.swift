@@ -23,6 +23,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var addElementBtn: UIButton!
     @IBOutlet weak var placeHeaderLabel: UILabel!
+    @IBOutlet weak var textDesc: UITextView!
     @IBOutlet var headerImageView:UIImageView!
     @IBOutlet var headerBlurImageView:UIImageView!
     
@@ -35,6 +36,24 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         descPhoto.imageView?.contentMode = .ScaleAspectFit
         descHeaderBtn.imageView?.contentMode = .ScaleAspectFit
         addElementBtn.layer.zPosition = 3
+        
+        
+        
+        let fixedWidth = textDesc.frame.size.width
+        textDesc.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
+        let newSize = textDesc.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
+        var newFrame = textDesc.frame
+        newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
+        textDesc.frame = newFrame;
+        
+        
+        
+        
+//        var contentRect = CGRectZero;
+//        for view in self.scrollView.subviews {
+//            contentRect = CGRectUnion(contentRect, view.frame);
+//        }
+//        self.scrollView.contentSize = contentRect.size;
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -77,6 +96,10 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 }
 
 class SomeImageProvider: ImageProvider {
+    
+    var imageCount: Int {
+        return 1
+    }
     
     func provideImage(completion: UIImage? -> Void) {
         completion(UIImage(named: "menu-board"))

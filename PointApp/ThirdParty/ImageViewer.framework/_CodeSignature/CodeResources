@@ -6,19 +6,27 @@
 	<dict>
 		<key>Headers/ImageViewer-Swift.h</key>
 		<data>
-		wZpWtCmEjT7WxVD4ly3ANuzq6LM=
+		lMIFEMc4cuWGnwe9WyoPsF5sqGg=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		y5DM2t/YrmN8Vow+j8Utt8JDH1U=
+		0+jhXF3e3uA+D2RGChgVOK+bROc=
+		</data>
+		<key>Modules/ImageViewer.swiftmodule/arm.swiftdoc</key>
+		<data>
+		8lk4VF6Z+6ZP8SZIi0YDwPZ4iDA=
+		</data>
+		<key>Modules/ImageViewer.swiftmodule/arm.swiftmodule</key>
+		<data>
+		U2Camneyw0oJ/E3TgXhubQVDrt8=
 		</data>
 		<key>Modules/ImageViewer.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		V6kxP8Kl0TOFKO1Pz8UVjfAyM68=
+		CIK9p2APRwWlMPsP/YrWy2cSs/0=
 		</data>
 		<key>Modules/ImageViewer.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		68UbRvxu662Ki+ZYUu4MkPhDQOo=
+		JqhZMuvJDTTG0s2D5ZjnHjRigus=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -31,33 +39,55 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			wZpWtCmEjT7WxVD4ly3ANuzq6LM=
+			lMIFEMc4cuWGnwe9WyoPsF5sqGg=
 			</data>
 			<key>hash2</key>
 			<data>
-			nmY24aCKTk3WS6ByYMnfvRMsYUj3aqZcSN1qR5gmoIE=
+			w9mFOUzGwwa9G0rQG3h+IA+oQPoZuBhGS+RjuO7k6xc=
+			</data>
+		</dict>
+		<key>Modules/ImageViewer.swiftmodule/arm.swiftdoc</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			8lk4VF6Z+6ZP8SZIi0YDwPZ4iDA=
+			</data>
+			<key>hash2</key>
+			<data>
+			79m76qeaMcRT7UEENLtvo27CIM/A2XnB6WVQjW7Lubo=
+			</data>
+		</dict>
+		<key>Modules/ImageViewer.swiftmodule/arm.swiftmodule</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			U2Camneyw0oJ/E3TgXhubQVDrt8=
+			</data>
+			<key>hash2</key>
+			<data>
+			05Aw1NbOi9dV6ePnlv2GqSIIj8733PuYP16Vy2Ri0n0=
 			</data>
 		</dict>
 		<key>Modules/ImageViewer.swiftmodule/arm64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			V6kxP8Kl0TOFKO1Pz8UVjfAyM68=
+			CIK9p2APRwWlMPsP/YrWy2cSs/0=
 			</data>
 			<key>hash2</key>
 			<data>
-			4M3c9xJBhi17dDsfa642Fjbon4YRxLMb1E4+Bb1FG48=
+			FoayPCqmvPnukuPJT3qAu2SH/dVOLrF7Yj3b0QplVT8=
 			</data>
 		</dict>
 		<key>Modules/ImageViewer.swiftmodule/arm64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			68UbRvxu662Ki+ZYUu4MkPhDQOo=
+			JqhZMuvJDTTG0s2D5ZjnHjRigus=
 			</data>
 			<key>hash2</key>
 			<data>
-			OukLqFE6yXcsRHYyh1iEhdnlpDKr/AjUFuawTpxfhw0=
+			50OmQv9Py2e+XPrFpc1Ab/1sWrV5Azt6JIf0rTNwhC8=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
