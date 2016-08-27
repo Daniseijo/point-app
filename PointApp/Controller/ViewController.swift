@@ -24,6 +24,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var addElementBtn: UIButton!
     @IBOutlet weak var placeHeaderLabel: UILabel!
     @IBOutlet weak var textDesc: UITextView!
+    
     @IBOutlet var headerImageView:UIImageView!
     @IBOutlet var headerBlurImageView:UIImageView!
     
