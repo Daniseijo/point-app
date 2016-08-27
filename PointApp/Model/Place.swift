@@ -14,11 +14,11 @@ import UIKit
 class Place: NSObject {
     
     /// The name of the Place.
-    var name: String!
+    var name: String?
     /// The description of the Place.
-    var placeDescription: String!
+    var placeDescription: String?
     /// The ID number of the place inside the App.
-    var major: Int!
+    var major: Int?
     
     /**
      Initialize the Place object.
