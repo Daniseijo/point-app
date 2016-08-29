@@ -17,61 +17,59 @@ let distance_W_ButtonHeader:CGFloat = 45.0 // The distance between the bottom of
 class ViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var descPhoto: UIButton!
     @IBOutlet weak var header: UIView!
-    @IBOutlet weak var descHeaderBtn: UIButton!
-    @IBOutlet weak var headerLabel: UILabel!
-    @IBOutlet weak var addElementBtn: UIButton!
-    @IBOutlet weak var placeHeaderLabel: UILabel!
-    @IBOutlet weak var textDesc: UITextView!
     
-    @IBOutlet var headerImageView:UIImageView!
-    @IBOutlet var headerBlurImageView:UIImageView!
+    @IBOutlet weak var elementImgBtn: UIButton!
+    @IBOutlet weak var elementImgHeaderBtn: UIButton!
+    
+    @IBOutlet weak var placeHeaderLabel: UILabel!
+    @IBOutlet var placeHeaderImgView:UIImageView!
+    @IBOutlet var placeHeaderBlurImgView:UIImageView!
+    
+    @IBOutlet weak var elementHeaderLabel: UILabel!
+    @IBOutlet weak var elementNameLabel: UILabel!
+    
+    @IBOutlet weak var elementDesc: UITextView!
+    
+    @IBOutlet weak var addElementBtn: UIButton!
     
     var blurredHeaderImageView:UIImageView?
+    
+    var beacon: Beacon?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         scrollView.delegate = self
-        descPhoto.imageView?.contentMode = .ScaleAspectFit
-        descHeaderBtn.imageView?.contentMode = .ScaleAspectFit
+        elementImgBtn.imageView?.contentMode = .ScaleAspectFit
+        elementImgHeaderBtn.imageView?.contentMode = .ScaleAspectFit
         addElementBtn.layer.zPosition = 3
         
-        
-        
-        let fixedWidth = textDesc.frame.size.width
-        textDesc.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
-        let newSize = textDesc.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
-        var newFrame = textDesc.frame
+        let fixedWidth = elementDesc.frame.size.width
+        elementDesc.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
+        let newSize = elementDesc.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
+        var newFrame = elementDesc.frame
         newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
-        textDesc.frame = newFrame;
+        elementDesc.frame = newFrame;
         
-        
-        
-        
-//        var contentRect = CGRectZero;
-//        for view in self.scrollView.subviews {
-//            contentRect = CGRectUnion(contentRect, view.frame);
-//        }
-//        self.scrollView.contentSize = contentRect.size;
+        beacon = Beacon.sampleBeacon()
     }
     
     override func viewDidAppear(animated: Bool) {
         // Header - Image
         
-        headerImageView = UIImageView(frame: header.bounds)
-        headerImageView?.image = UIImage(named: "header_bg")
-        headerImageView?.contentMode = .ScaleAspectFill
-        header.insertSubview(headerImageView, belowSubview: headerLabel)
+        placeHeaderImgView = UIImageView(frame: header.bounds)
+        placeHeaderImgView?.image = UIImage(named: "header_museo")
+        placeHeaderImgView?.contentMode = .ScaleAspectFill
+        header.insertSubview(placeHeaderImgView, belowSubview: elementHeaderLabel)
         
         // Header - Blurred Image
         
-        headerBlurImageView = UIImageView(frame: header.bounds)
-        headerBlurImageView?.image = UIImage(named: "header_bg")?.blurredImageWithRadius(10, iterations: 20, tintColor: UIColor.clearColor())
-        headerBlurImageView?.contentMode = UIViewContentMode.ScaleAspectFill
-        headerBlurImageView?.alpha = 0.0
-        header.insertSubview(headerBlurImageView, belowSubview: headerLabel)
+        placeHeaderBlurImgView = UIImageView(frame: header.bounds)
+        placeHeaderBlurImgView?.image = UIImage(named: "header_museo")!.blurredImageWithRadius(10, iterations: 20, tintColor: UIColor.clearColor())
+        placeHeaderBlurImgView?.contentMode = UIViewContentMode.ScaleAspectFill
+        placeHeaderBlurImgView?.alpha = 0.0
+        header.insertSubview(placeHeaderBlurImgView, belowSubview: elementHeaderLabel)
         
         header.clipsToBounds = true
         
@@ -82,8 +80,10 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func descPhotoTap(sender: UIButton) {
-        let imageProvider = SomeImageProvider()
+    // MARK: Button Actions
+    
+    @IBAction func elementImgBtnTap(sender: UIButton) {
+        let imageProvider = SomeImageProvider(beacon: beacon!)
         let buttonAssets = CloseButtonAssets(normal: UIImage(named:"close_normal")!, highlighted: UIImage(named: "close_highlighted"))
         let configuration = ImageViewerConfiguration(imageSize: CGSize(width: 10, height: 10), closeButtonAssets: buttonAssets)
         
@@ -93,25 +93,31 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     @IBAction func addElement(sender: UIButton) {
         print("Add Element Pressed")
-    }
-}
-
-class SomeImageProvider: ImageProvider {
-    
-    var imageCount: Int {
-        return 1
+        
+        changingBeacon(beacon!)
     }
     
-    func provideImage(completion: UIImage? -> Void) {
-        completion(UIImage(named: "menu-board"))
+    // MARK: Auxiliar functions
+    func changingBeacon(newBeacon: Beacon) {
+        // TODO: Save beacon locally to update SomeImageProvider
+        
+        placeHeaderLabel.text = newBeacon.place?.placeName
+        placeHeaderImgView.image = newBeacon.place?.placeImg
+        placeHeaderBlurImgView.image = newBeacon.place?.placeImg?.blurredImageWithRadius(10, iterations: 20, tintColor: UIColor.clearColor())
+        
+        elementNameLabel.text = newBeacon.element?.elementName
+        elementHeaderLabel.text = newBeacon.element?.elementName
+        
+        elementImgBtn.setImage(newBeacon.element?.elementImg, forState: .Normal)
+        elementImgHeaderBtn.setImage(newBeacon.element?.elementImg, forState: .Normal)
+        
+        elementDesc.text = newBeacon.element?.elementDescription
     }
     
-    func provideImage(atIndex index: Int, completion: UIImage? -> Void) {
-        completion(UIImage(named: "menu-board"))
-    }
 }
 
 extension ViewController {
+    
     func scrollViewDidScroll(scrollView: UIScrollView) {
         let offset = scrollView.contentOffset.y
         var avatarTransform = CATransform3DIdentity
@@ -140,31 +146,31 @@ extension ViewController {
             //  ------------ Label
             
             let labelTransform = CATransform3DMakeTranslation(0, max(-distance_W_LabelHeader, offset_B_LabelHeader - offset), 0)
-            headerLabel.layer.transform = labelTransform
+            elementHeaderLabel.layer.transform = labelTransform
             
             var buttonTransform = CATransform3DMakeTranslation(0, max(-distance_W_ButtonHeader, offset_B_LabelHeader - offset), 0)
             buttonTransform = CATransform3DScale(buttonTransform, 1.0,  1.0, 1.0)
-            descHeaderBtn.layer.transform = buttonTransform
+            elementImgHeaderBtn.layer.transform = buttonTransform
             
             //  ------------ Blur
             
-            headerBlurImageView?.alpha = min (1.0, (offset - offset_B_LabelHeader)/distance_W_LabelHeader)
+            placeHeaderBlurImgView?.alpha = min (1.0, (offset - offset_B_LabelHeader)/distance_W_LabelHeader)
             
             // Avatar -----------
             
-            let avatarScaleFactor = (min(offset_HeaderStop, offset)) / descPhoto.bounds.height / 1.4 // Slow down the animation
-            let avatarSizeVariation = ((descPhoto.bounds.height * (1.0 + avatarScaleFactor)) - descPhoto.bounds.height) / 2.0
+            let avatarScaleFactor = (min(offset_HeaderStop, offset)) / elementImgBtn.bounds.height / 1.4 // Slow down the animation
+            let avatarSizeVariation = ((elementImgBtn.bounds.height * (1.0 + avatarScaleFactor)) - elementImgBtn.bounds.height) / 2.0
             avatarTransform = CATransform3DTranslate(avatarTransform, 0, avatarSizeVariation, 0)
             avatarTransform = CATransform3DScale(avatarTransform,  1.0 - avatarScaleFactor, 1.0 - avatarScaleFactor, 1)
             
             if offset <= offset_HeaderStop {
                 
-                if descPhoto.layer.zPosition < header.layer.zPosition{
+                if elementImgBtn.layer.zPosition < header.layer.zPosition{
                     header.layer.zPosition = 0
                 }
                 
             } else {
-                if descPhoto.layer.zPosition >= header.layer.zPosition{
+                if elementImgBtn.layer.zPosition >= header.layer.zPosition{
                     header.layer.zPosition = 2
                 }
             }
@@ -176,6 +182,27 @@ extension ViewController {
         // Apply Transformations
         
         header.layer.transform = headerTransform
-        descPhoto.layer.transform = avatarTransform
+        elementImgBtn.layer.transform = avatarTransform
+    }
+}
+
+class SomeImageProvider: ImageProvider {
+    
+    var beacon: Beacon?
+    
+    init(beacon: Beacon) {
+        self.beacon = beacon
+    }
+    
+    var imageCount: Int {
+        return 1
+    }
+    
+    func provideImage(completion: UIImage? -> Void) {
+        completion(beacon?.element?.elementImg)
+    }
+    
+    func provideImage(atIndex index: Int, completion: UIImage? -> Void) {
+        completion(beacon?.element?.elementImg)
     }
 }

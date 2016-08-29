@@ -14,9 +14,11 @@ import UIKit
 class Place: NSObject {
     
     /// The name of the Place.
-    var name: String?
+    var placeName: String?
     /// The description of the Place.
     var placeDescription: String?
+    /// The image ilustrating the Place.
+    var placeImg: UIImage?
     /// The ID number of the place inside the App.
     var major: Int?
     
@@ -29,15 +31,16 @@ class Place: NSObject {
         - major: The ID number of the place inside the App.
      - returns: An initialized Place object, or nil if the object could not be created for some reason that would not result in an exception.
      */
-    init(name: String, placeDescription: String, major: Int) {
+    init(placeName: String, placeDescription: String, placeImg: String, major: Int) {
         super.init()
-        self.name = name
+        self.placeName = placeName
         self.placeDescription = placeDescription
+        self.placeImg = UIImage(named: placeImg)
         self.major = major
     }
     
     override var description: String {
-        return "name: \(name)" +
+        return "name: \(placeName)" +
             "description: \(placeDescription)" +
             "major: \(major)"
     }

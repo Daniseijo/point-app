@@ -13,14 +13,17 @@ class PersistencyManager: NSObject {
     private var places = [Place]()
     
     override init() {
-        let place1 = Place(name: "Cafetería",
+        let place1 = Place(placeName: "Cafetería",
                            placeDescription: "Cafetería de la ETSIT",
+                           placeImg: "header_museo",
                            major: 1)
-        let place2 = Place(name: "Museo",
+        let place2 = Place(placeName: "Museo",
                            placeDescription: "Museo de la ETSIT",
+                           placeImg: "header_museo",
                            major: 2)
-        let place3 = Place(name: "Clases",
+        let place3 = Place(placeName: "Clases",
                            placeDescription: "Clases en la ETSIT",
+                           placeImg: "header_museo",
                            major: 3)
         
         places = [place1, place2, place3]

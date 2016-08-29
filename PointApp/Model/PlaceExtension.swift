@@ -10,6 +10,6 @@ import Foundation
 
 extension Place {
     func pe_tableRepresentation() -> (titles:[String], values:[String]) {
-        return (["Name", "Description", "Major"], [name!, placeDescription!, String(major)])
+        return (["Name", "Description", "Major"], [placeName!, placeDescription!, String(major)])
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -33,9 +33,8 @@
                                             <constraint firstAttribute="width" constant="40" id="dvP-5d-CJc"/>
                                             <constraint firstAttribute="height" constant="40" id="rOw-ay-Kfc"/>
                                         </constraints>
-                                        <state key="normal" image="menu-board"/>
                                         <connections>
-                                            <action selector="descPhotoTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hcv-oz-aSK"/>
+                                            <action selector="elementImgBtnTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="132-C5-5Cl"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -67,18 +66,16 @@
                                             <constraint firstAttribute="width" constant="136" id="H7S-ZJ-eYo"/>
                                             <constraint firstAttribute="height" constant="136" id="zUF-0S-z8z"/>
                                         </constraints>
-                                        <state key="normal" image="menu-board"/>
                                         <connections>
-                                            <action selector="descPhotoTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jdk-N3-zSu"/>
+                                            <action selector="elementImgBtnTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="baI-3f-qOM"/>
                                         </connections>
                                     </button>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxc-mA-5Da">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Pollo" translatesAutoresizingMaskIntoConstraints="NO" id="dxc-mA-5Da">
                                         <rect key="frame" x="20" y="260" width="560" height="520"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="520" placeholder="YES" id="qQl-vN-erG"/>
                                         </constraints>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -143,21 +140,19 @@
                     <size key="freeformSize" width="600" height="800"/>
                     <connections>
                         <outlet property="addElementBtn" destination="yG8-Ei-abc" id="E7B-ji-Zte"/>
-                        <outlet property="descHeaderBtn" destination="XV9-lB-kFu" id="aJL-RC-jab"/>
-                        <outlet property="descPhoto" destination="bSV-hG-f0P" id="Ucp-gH-v6H"/>
+                        <outlet property="elementDesc" destination="dxc-mA-5Da" id="aAk-xT-aGX"/>
+                        <outlet property="elementHeaderLabel" destination="c1F-6m-Be9" id="6av-In-PJ5"/>
+                        <outlet property="elementImgBtn" destination="bSV-hG-f0P" id="9DQ-0V-zCu"/>
+                        <outlet property="elementImgHeaderBtn" destination="XV9-lB-kFu" id="92K-iO-bGh"/>
+                        <outlet property="elementNameLabel" destination="WFL-Q1-xcL" id="Qhz-vQ-OoK"/>
                         <outlet property="header" destination="LKO-j5-9xv" id="XTY-Ve-D4B"/>
-                        <outlet property="headerLabel" destination="c1F-6m-Be9" id="f9g-hq-gn9"/>
                         <outlet property="placeHeaderLabel" destination="JMi-ET-vjr" id="dtD-wC-gR0"/>
                         <outlet property="scrollView" destination="2LM-br-1Wz" id="apc-Iw-74m"/>
-                        <outlet property="textDesc" destination="dxc-mA-5Da" id="19B-Vw-0fx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="565" y="450"/>
+            <point key="canvasLocation" x="171" y="445"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="menu-board" width="670" height="670"/>
-    </resources>
 </document>
