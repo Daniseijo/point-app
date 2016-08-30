@@ -17,13 +17,15 @@ class Element: NSObject {
     var elementName: String?
     /// The description of the Element.
     var elementDescription: String?
-    /// The image ilustrating the Place.
+    /// The image ilustrating the Element.
     var elementImg: UIImage?
+    /// The Place where the Element belongs.
+    var elementPlace: Place?
     /// The ID number of the place inside the App.
     var minor: Int?
     
     /**
-     Initialize the Place object.
+     Initialize the Element object.
      
      - parameters:
      - name: The name of the Element.
@@ -31,12 +33,22 @@ class Element: NSObject {
      - minor: The ID number of the element inside the Place.
      - returns: An initialized Element object, or nil if the object could not be created for some reason that would not result in an exception.
      */
-    init(elementName: String, elementDescription: String, elementImg: String, minor: Int) {
+    init(elementName: String, elementDescription: String, elementImg: String, elementPlace: Place, minor: Int) {
         super.init()
         self.elementName = elementName
         self.elementDescription = elementDescription
         self.elementImg = UIImage(named: elementImg)
+        self.elementPlace = elementPlace
+        
         self.minor = minor
+    }
+    
+    override func setValue(value: AnyObject?, forKey key: String) {
+        if key == "_place" {
+            
+        } else {
+            super.setValue(value, forKey: key)
+        }
     }
     
     override var description: String {

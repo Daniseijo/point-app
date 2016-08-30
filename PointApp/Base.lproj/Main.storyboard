@@ -70,7 +70,7 @@
                                             <action selector="elementImgBtnTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="baI-3f-qOM"/>
                                         </connections>
                                     </button>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Pollo" translatesAutoresizingMaskIntoConstraints="NO" id="dxc-mA-5Da">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Pollo" translatesAutoresizingMaskIntoConstraints="NO" id="dxc-mA-5Da" customClass="ElementDescView" customModule="PointApp" customModuleProvider="target">
                                         <rect key="frame" x="20" y="260" width="560" height="520"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>

@@ -51,8 +51,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         var newFrame = elementDesc.frame
         newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
         elementDesc.frame = newFrame;
-        
-        beacon = Beacon.sampleBeacon()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -92,18 +90,28 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func addElement(sender: UIButton) {
-        print("Add Element Pressed")
+        var majorID: Int
         
-        changingBeacon(beacon!)
+        if beacon?.major == 1 {
+            majorID = 2
+        } else {
+            majorID = 1
+        }
+        
+        Beacon.fetchBeacon("0018B4CC-1937-4981-B893-9D7191B22E35", major: majorID, minor: 1) { (beacon) in
+            self.changingBeacon(beacon)
+        }
     }
     
     // MARK: Auxiliar functions
     func changingBeacon(newBeacon: Beacon) {
         // TODO: Save beacon locally to update SomeImageProvider
+        self.beacon = newBeacon
         
-        placeHeaderLabel.text = newBeacon.place?.placeName
-        placeHeaderImgView.image = newBeacon.place?.placeImg
-        placeHeaderBlurImgView.image = newBeacon.place?.placeImg?.blurredImageWithRadius(10, iterations: 20, tintColor: UIColor.clearColor())
+        placeHeaderLabel.text = newBeacon.element?.elementPlace?.placeName
+        placeHeaderImgView.image = newBeacon.element?.elementPlace?.placeImg
+        placeHeaderBlurImgView.image = newBeacon.element?.elementPlace?.placeImg?.blurredImageWithRadius(10, iterations: 20, tintColor: UIColor.clearColor())
+        self.view.backgroundColor = newBeacon.element?.elementPlace?.placeColor
         
         elementNameLabel.text = newBeacon.element?.elementName
         elementHeaderLabel.text = newBeacon.element?.elementName
