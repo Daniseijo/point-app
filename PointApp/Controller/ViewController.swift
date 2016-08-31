@@ -68,14 +68,14 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         // Header - Image
         
         placeHeaderImgView = UIImageView(frame: header.bounds)
-        placeHeaderImgView?.image = UIImage(named: "header_museo")
+        placeHeaderImgView?.image = UIImage(named: "header_cafeteria")
         placeHeaderImgView?.contentMode = .ScaleAspectFill
         header.insertSubview(placeHeaderImgView, belowSubview: elementHeaderLabel)
         
         // Header - Blurred Image
         
         placeHeaderBlurImgView = UIImageView(frame: header.bounds)
-        placeHeaderBlurImgView?.image = UIImage(named: "header_museo")!.blurredImageWithRadius(10, iterations: 20, tintColor: UIColor.clearColor())
+        placeHeaderBlurImgView?.image = UIImage(named: "header_cafeteria")!.blurredImageWithRadius(10, iterations: 20, tintColor: UIColor.clearColor())
         placeHeaderBlurImgView?.contentMode = UIViewContentMode.ScaleAspectFill
         placeHeaderBlurImgView?.alpha = 0.0
         header.insertSubview(placeHeaderBlurImgView, belowSubview: elementHeaderLabel)
@@ -214,15 +214,15 @@ extension ViewController: CLLocationManagerDelegate {
         if (knownBeacons.count > 0) {
             let closestBeacon = knownBeacons[0] ;
             
-            if self.currentElement != nil {
-                currentElement?.elementPlace?.major = closestBeacon.major
-                currentElement?.minor = closestBeacon.minor
-            }
-            
             if self.currentElement == nil || closestBeacon.major != self.currentElement?.elementPlace?.major || closestBeacon.minor != self.currentElement?.minor {
                 PointAppAPI.fetchBeacon(region.proximityUUID.UUIDString, major: closestBeacon.major, minor: closestBeacon.minor) { (element) in
                     self.changingElement(element)
                 }
+            }
+            
+            if self.currentElement != nil {
+                currentElement?.elementPlace?.major = closestBeacon.major
+                currentElement?.minor = closestBeacon.minor
             }
             
         } else {
