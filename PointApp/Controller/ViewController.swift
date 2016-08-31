@@ -110,13 +110,12 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         }
         
         PointAppAPI.fetchBeacon("0018B4CC-1937-4981-B893-9D7191B22E35", major: majorID, minor: 1) { (element) in
-            self.changingBeacon(element)
+            self.changingElement(element)
         }
     }
     
     // MARK: Auxiliar functions
-    func changingBeacon(newElement: Element) {
-        // TODO: Save beacon locally to update SomeImageProvider
+    func changingElement(newElement: Element) {
         self.currentElement = newElement
         
         placeHeaderLabel.text = newElement.elementPlace?.placeName
@@ -222,7 +221,7 @@ extension ViewController: CLLocationManagerDelegate {
             
             if self.currentElement == nil || closestBeacon.major != self.currentElement?.elementPlace?.major || closestBeacon.minor != self.currentElement?.minor {
                 PointAppAPI.fetchBeacon(region.proximityUUID.UUIDString, major: closestBeacon.major, minor: closestBeacon.minor) { (element) in
-                    self.changingBeacon(element)
+                    self.changingElement(element)
                 }
             }
             
