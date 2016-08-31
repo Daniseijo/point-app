@@ -22,7 +22,7 @@ class Element: NSObject {
     /// The Place where the Element belongs.
     var elementPlace: Place?
     /// The ID number of the place inside the App.
-    var minor: Int?
+    var minor: NSNumber?
     
     /**
      Initialize the Element object.
@@ -33,11 +33,11 @@ class Element: NSObject {
      - minor: The ID number of the element inside the Place.
      - returns: An initialized Element object, or nil if the object could not be created for some reason that would not result in an exception.
      */
-    init(elementName: String, elementDescription: String, elementImg: String, elementPlace: Place, minor: Int) {
+    init(elementName: String, elementDescription: String, elementImg: UIImage, elementPlace: Place, minor: NSNumber) {
         super.init()
         self.elementName = elementName
         self.elementDescription = elementDescription
-        self.elementImg = UIImage(named: elementImg)
+        self.elementImg = elementImg
         self.elementPlace = elementPlace
         
         self.minor = minor

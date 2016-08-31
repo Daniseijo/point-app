@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5E29206D1D74467700EE96C3 /* Beacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E29206C1D74467700EE96C3 /* Beacon.swift */; };
 		5E29206F1D744ADE00EE96C3 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E29206E1D744ADE00EE96C3 /* Element.swift */; };
 		5E2FE6341D758F2200868BEA /* ElementDescView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2FE6331D758F2200868BEA /* ElementDescView.swift */; };
 		5E4434661D353CE500C5439F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4434651D353CE500C5439F /* AppDelegate.swift */; };
@@ -59,7 +58,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5E29206C1D74467700EE96C3 /* Beacon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Beacon.swift; path = Model/Beacon.swift; sourceTree = "<group>"; };
 		5E29206E1D744ADE00EE96C3 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Element.swift; path = Model/Element.swift; sourceTree = "<group>"; };
 		5E2FE6331D758F2200868BEA /* ElementDescView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ElementDescView.swift; path = View/ElementDescView.swift; sourceTree = "<group>"; };
 		5E4434621D353CE300C5439F /* PointApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PointApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -173,7 +171,6 @@
 				5E4434931D368C6C00C5439F /* Place.swift */,
 				5E29206E1D744ADE00EE96C3 /* Element.swift */,
 				5E7C2E341D71EB1400BFB306 /* PlaceExtension.swift */,
-				5E29206C1D74467700EE96C3 /* Beacon.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -357,7 +354,6 @@
 				5E7C2E351D71EB1400BFB306 /* PlaceExtension.swift in Sources */,
 				5E29206F1D744ADE00EE96C3 /* Element.swift in Sources */,
 				5ED3D1C11D5F71210007EFD4 /* DescHeaderBtnView.swift in Sources */,
-				5E29206D1D74467700EE96C3 /* Beacon.swift in Sources */,
 				5E4434661D353CE500C5439F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

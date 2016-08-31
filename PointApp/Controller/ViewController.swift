@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CoreLocation
+
 import ImageViewer
 
 let offset_HeaderStop:CGFloat = 40.0 // At this offset the Header stops its transformations
@@ -35,11 +37,20 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     var blurredHeaderImageView:UIImageView?
     
-    var beacon: Beacon?
+    var currentElement: Element?
+    
+    let locationManager = CLLocationManager()
+    let region = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: "0018B4CC-1937-4981-B893-9D7191B22E35")!, identifier: "BeaconA");
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        locationManager.delegate = self;
+        if (CLLocationManager.authorizationStatus() != CLAuthorizationStatus.AuthorizedWhenInUse) {
+            locationManager.requestWhenInUseAuthorization();
+        }
+        locationManager.startRangingBeaconsInRegion(region);
+        
         scrollView.delegate = self
         elementImgBtn.imageView?.contentMode = .ScaleAspectFit
         elementImgHeaderBtn.imageView?.contentMode = .ScaleAspectFit
@@ -81,7 +92,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     // MARK: Button Actions
     
     @IBAction func elementImgBtnTap(sender: UIButton) {
-        let imageProvider = SomeImageProvider(beacon: beacon!)
+        let imageProvider = SomeImageProvider(element: currentElement!)
         let buttonAssets = CloseButtonAssets(normal: UIImage(named:"close_normal")!, highlighted: UIImage(named: "close_highlighted"))
         let configuration = ImageViewerConfiguration(imageSize: CGSize(width: 10, height: 10), closeButtonAssets: buttonAssets)
         
@@ -92,34 +103,34 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     @IBAction func addElement(sender: UIButton) {
         var majorID: Int
         
-        if beacon?.major == 1 {
+        if currentElement?.elementPlace?.major == 1 {
             majorID = 2
         } else {
             majorID = 1
         }
         
-        Beacon.fetchBeacon("0018B4CC-1937-4981-B893-9D7191B22E35", major: majorID, minor: 1) { (beacon) in
-            self.changingBeacon(beacon)
+        PointAppAPI.fetchBeacon("0018B4CC-1937-4981-B893-9D7191B22E35", major: majorID, minor: 1) { (element) in
+            self.changingBeacon(element)
         }
     }
     
     // MARK: Auxiliar functions
-    func changingBeacon(newBeacon: Beacon) {
+    func changingBeacon(newElement: Element) {
         // TODO: Save beacon locally to update SomeImageProvider
-        self.beacon = newBeacon
+        self.currentElement = newElement
         
-        placeHeaderLabel.text = newBeacon.element?.elementPlace?.placeName
-        placeHeaderImgView.image = newBeacon.element?.elementPlace?.placeImg
-        placeHeaderBlurImgView.image = newBeacon.element?.elementPlace?.placeImg?.blurredImageWithRadius(10, iterations: 20, tintColor: UIColor.clearColor())
-        self.view.backgroundColor = newBeacon.element?.elementPlace?.placeColor
+        placeHeaderLabel.text = newElement.elementPlace?.placeName
+        placeHeaderImgView.image = newElement.elementPlace?.placeImg
+        placeHeaderBlurImgView.image = newElement.elementPlace?.placeImg?.blurredImageWithRadius(10, iterations: 20, tintColor: UIColor.clearColor())
+        self.view.backgroundColor = newElement.elementPlace?.placeColor
         
-        elementNameLabel.text = newBeacon.element?.elementName
-        elementHeaderLabel.text = newBeacon.element?.elementName
+        elementNameLabel.text = newElement.elementName
+        elementHeaderLabel.text = newElement.elementName
         
-        elementImgBtn.setImage(newBeacon.element?.elementImg, forState: .Normal)
-        elementImgHeaderBtn.setImage(newBeacon.element?.elementImg, forState: .Normal)
+        elementImgBtn.setImage(newElement.elementImg, forState: .Normal)
+        elementImgHeaderBtn.setImage(newElement.elementImg, forState: .Normal)
         
-        elementDesc.text = newBeacon.element?.elementDescription
+        elementDesc.text = newElement.elementDescription
     }
     
 }
@@ -194,12 +205,40 @@ extension ViewController {
     }
 }
 
+// MARK: - Location Manager Delegate
+extension ViewController: CLLocationManagerDelegate {
+    
+    func locationManager(manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], inRegion region: CLBeaconRegion) {
+        //println(beacons);
+        let knownBeacons = beacons.filter{ $0.proximity != CLProximity.Unknown }
+        
+        if (knownBeacons.count > 0) {
+            let closestBeacon = knownBeacons[0] ;
+            
+            if self.currentElement != nil {
+                currentElement?.elementPlace?.major = closestBeacon.major
+                currentElement?.minor = closestBeacon.minor
+            }
+            
+            if self.currentElement == nil || closestBeacon.major != self.currentElement?.elementPlace?.major || closestBeacon.minor != self.currentElement?.minor {
+                PointAppAPI.fetchBeacon(region.proximityUUID.UUIDString, major: closestBeacon.major, minor: closestBeacon.minor) { (element) in
+                    self.changingBeacon(element)
+                }
+            }
+            
+        } else {
+            print("No cambia nada")
+        }
+    }
+    
+}
+
 class SomeImageProvider: ImageProvider {
     
-    var beacon: Beacon?
+    var element: Element?
     
-    init(beacon: Beacon) {
-        self.beacon = beacon
+    init(element: Element) {
+        self.element = element
     }
     
     var imageCount: Int {
@@ -207,10 +246,10 @@ class SomeImageProvider: ImageProvider {
     }
     
     func provideImage(completion: UIImage? -> Void) {
-        completion(beacon?.element?.elementImg)
+        completion(element?.elementImg)
     }
     
     func provideImage(atIndex index: Int, completion: UIImage? -> Void) {
-        completion(beacon?.element?.elementImg)
+        completion(element?.elementImg)
     }
 }

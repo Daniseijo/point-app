@@ -13,6 +13,8 @@ import UIKit
  */
 class Place: NSObject {
     
+    /// The Place id.
+    var _id: Int?
     /// The name of the Place.
     var placeName: String?
     /// The description of the Place.
@@ -22,7 +24,7 @@ class Place: NSObject {
     /// A color that match the image to make the app prettier.
     var placeColor: UIColor?
     /// The ID number of the place inside the App.
-    var major: Int?
+    var major: NSNumber?
     
     /**
      Initialize the Place object.
@@ -33,14 +35,55 @@ class Place: NSObject {
         - major: The ID number of the place inside the App.
      - returns: An initialized Place object, or nil if the object could not be created for some reason that would not result in an exception.
      */
-    init(placeName: String, placeDescription: String, placeImg: String, placeColor: Int, major: Int) {
+    init(placeName: String, placeDescription: String, placeImg: UIImage, placeColor: Int, major: NSNumber) {
         super.init()
         self.placeName = placeName
         self.placeDescription = placeDescription
-        self.placeImg = UIImage(named: placeImg)
+        self.placeImg = placeImg
         self.placeColor = UIColor(netHex: placeColor)
         self.major = major
     }
+    
+//    func persist(place: Place) {
+//        if place.placeName == nil || place.placeName?.characters.count == 0 {
+//            return
+//        }
+//        
+//        var places = 
+//    }
+    
+//    - (void) persist:(Location*)location
+//    {
+//    if (!location || location.name == nil || location.name.length == 0) {
+//    return; //input safety check
+//    }
+//    
+//    
+//    NSString* locations = [kBaseURL stringByAppendingPathComponent:kLocations];
+//    
+//    BOOL isExistingLocation = location._id != nil;
+//    NSURL* url = isExistingLocation ? [NSURL URLWithString:[locations stringByAppendingPathComponent:location._id]] :
+//    [NSURL URLWithString:locations]; //1
+//    
+//    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+//    request.HTTPMethod = isExistingLocation ? @"PUT" : @"POST"; //2
+//    
+//    NSData* data = [NSJSONSerialization dataWithJSONObject:[location toDictionary] options:0 error:NULL]; //3
+//    request.HTTPBody = data;
+//    
+//    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"]; //4
+//    
+//    NSURLSessionConfiguration* config = [NSURLSessionConfiguration defaultSessionConfiguration];
+//    NSURLSession* session = [NSURLSession sessionWithConfiguration:config];
+//    
+//    NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) { //5
+//    if (!error) {
+//    NSArray* responseArray = @[[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL]];
+//    [self parseAndAddLocations:responseArray toArray:self.objects];
+//    }
+//    }];
+//    [dataTask resume];
+//    }
     
     override var description: String {
         return "name: \(placeName)" +
