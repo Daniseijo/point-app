@@ -52,11 +52,21 @@ class PointAppAPI: NSObject {
                     imageElement = UIImage(data: data)
                 }
                 
+                var description = ""
+                
+                if json["type"] as? String == "timetable" {
+                    let timetable = json["description"] as! [String: AnyObject]
+                    
+                    let dayOfWeek = self.getDayOfWeek()
+                    description = timetable[String(dayOfWeek)] as! String
+                } else {
+                    description = json["description"] as! String
+                }
                 let element = Element(elementName: json["name"] as! String,
-                                         elementDescription: json["description"] as! String,
-                                         elementImg: imageElement!,
-                                         elementPlace: place,
-                                         minor: json["minor"] as! Int)
+                                      elementDescription: description,
+                                      elementImg: imageElement!,
+                                      elementPlace: place,
+                                      minor: json["minor"] as! Int)
                 
                 dispatch_async(dispatch_get_main_queue(), {
                     completionHandler(element)
@@ -67,5 +77,13 @@ class PointAppAPI: NSObject {
             }
             
             }.resume()
+    }
+    
+    static func getDayOfWeek() -> Int {
+        let todayDate = NSDate()
+        let myCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
+        let myComponents = myCalendar?.components(.Weekday, fromDate: todayDate)
+        let weekDay = myComponents?.weekday
+        return weekDay!
     }
 }

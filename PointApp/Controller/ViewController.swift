@@ -18,6 +18,10 @@ let distance_W_ButtonHeader:CGFloat = 45.0 // The distance between the bottom of
 
 class ViewController: UIViewController, UIScrollViewDelegate {
 
+    /// The top view for when there is no iBeacon near
+    @IBOutlet weak var startingView: UIView!
+    
+    /// The scrollview
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var header: UIView!
     
@@ -33,7 +37,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var elementDesc: UITextView!
     
-    @IBOutlet weak var addElementBtn: UIButton!
+    @IBOutlet weak var showInfoBtn: UIButton!
     
     var blurredHeaderImageView:UIImageView?
     
@@ -54,7 +58,9 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         scrollView.delegate = self
         elementImgBtn.imageView?.contentMode = .ScaleAspectFit
         elementImgHeaderBtn.imageView?.contentMode = .ScaleAspectFit
-        addElementBtn.layer.zPosition = 3
+        startingView.layer.zPosition = 3
+        showInfoBtn.layer.zPosition = 4
+        showInfoBtn.tintColor = UIColor.blackColor()
         
         let fixedWidth = elementDesc.frame.size.width
         elementDesc.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
@@ -100,18 +106,13 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         self.presentImageViewer(imageViewer)
     }
     
-    @IBAction func addElement(sender: UIButton) {
-        var majorID: Int
+    @IBAction func showInfo(sender: UIButton) {
+        let alertController = UIAlertController(title: "Point App", message: "Daniel Seijo Sánchez ©2016", preferredStyle: .Alert)
         
-        if currentElement?.elementPlace?.major == 1 {
-            majorID = 2
-        } else {
-            majorID = 1
-        }
+        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alertController.addAction(defaultAction)
         
-        PointAppAPI.fetchBeacon("0018B4CC-1937-4981-B893-9D7191B22E35", major: majorID, minor: 1) { (element) in
-            self.changingElement(element)
-        }
+        presentViewController(alertController, animated: true, completion: nil)
     }
     
     // MARK: Auxiliar functions
@@ -130,10 +131,49 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         elementImgHeaderBtn.setImage(newElement.elementImg, forState: .Normal)
         
         elementDesc.text = newElement.elementDescription
+        
+        if !startingView.hidden {
+            startingView.hidden = true
+            showInfoBtn.tintColor = UIColor.whiteColor()
+            UIApplication.sharedApplication().statusBarStyle = .LightContent
+        }
     }
     
 }
 
+// MARK: - Location Manager Delegate
+extension ViewController: CLLocationManagerDelegate {
+    
+    func locationManager(manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], inRegion region: CLBeaconRegion) {
+        
+        var knownBeacons = beacons.filter{ $0.proximity == .Immediate }
+        knownBeacons.appendContentsOf(beacons.filter{ $0.proximity == .Near })
+            
+        if (knownBeacons.count > 0) {
+            let closestBeacon = knownBeacons[0] ;
+            
+            if self.currentElement == nil || closestBeacon.major != self.currentElement?.elementPlace?.major || closestBeacon.minor != self.currentElement?.minor {
+                PointAppAPI.fetchBeacon(region.proximityUUID.UUIDString, major: closestBeacon.major, minor: closestBeacon.minor) { (element) in
+                    self.changingElement(element)
+                }
+            }
+            
+            if self.currentElement != nil {
+                currentElement?.elementPlace?.major = closestBeacon.major
+                currentElement?.minor = closestBeacon.minor
+            }
+            
+        } else {
+            startingView.hidden = false
+            showInfoBtn.tintColor = UIColor.blackColor()
+            UIApplication.sharedApplication().statusBarStyle = .Default
+            currentElement = nil
+        }
+    }
+    
+}
+
+// MARK: - Scroll View Twitter Effect [http://www.thinkandbuild.it/implementing-the-twitter-ios-app-ui/]
 extension ViewController {
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -202,34 +242,6 @@ extension ViewController {
         header.layer.transform = headerTransform
         elementImgBtn.layer.transform = avatarTransform
     }
-}
-
-// MARK: - Location Manager Delegate
-extension ViewController: CLLocationManagerDelegate {
-    
-    func locationManager(manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], inRegion region: CLBeaconRegion) {
-        //println(beacons);
-        let knownBeacons = beacons.filter{ $0.proximity != CLProximity.Unknown }
-        
-        if (knownBeacons.count > 0) {
-            let closestBeacon = knownBeacons[0] ;
-            
-            if self.currentElement == nil || closestBeacon.major != self.currentElement?.elementPlace?.major || closestBeacon.minor != self.currentElement?.minor {
-                PointAppAPI.fetchBeacon(region.proximityUUID.UUIDString, major: closestBeacon.major, minor: closestBeacon.minor) { (element) in
-                    self.changingElement(element)
-                }
-            }
-            
-            if self.currentElement != nil {
-                currentElement?.elementPlace?.major = closestBeacon.major
-                currentElement?.minor = closestBeacon.minor
-            }
-            
-        } else {
-            print("No cambia nada")
-        }
-    }
-    
 }
 
 class SomeImageProvider: ImageProvider {
