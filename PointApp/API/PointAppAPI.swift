@@ -12,14 +12,14 @@ class PointAppAPI: NSObject {
     static let BASE_URL = "https://point-app-rest-api.herokuapp.com/api/"
     static let ROOT_KEY = "79edc86c9b2930aecdfcf395ffb695a0"
     
-    static func fetchBeacon(UUID: String, major: NSNumber, minor: NSNumber, completionHandler: (Element) -> ()) {
+    static func fetchBeacon(UUID: String, major: NSNumber, minor: NSNumber, completionHandler: @escaping (Element) -> ()) {
         
         let URL = BASE_URL + "element/beacon/\(UUID)/\(major)/\(minor)"
-        let request = NSMutableURLRequest(URL: NSURL(string: URL)!)
+        let request = NSMutableURLRequest(url: Foundation.URL(string: URL)!)
         
         request.addValue(ROOT_KEY, forHTTPHeaderField: "rootAuth")
         
-        NSURLSession.sharedSession().dataTaskWithRequest(request) { (data,response,error) in
+        URLSession.shared.dataTask(with: request as URLRequest, completionHandler: { (data,response,error) in
             
             if error != nil {
                 print (error)
@@ -27,15 +27,16 @@ class PointAppAPI: NSObject {
             }
             
             do {
-                let json = try(NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers))
-                print(json)
+                let jsonObject = try(JSONSerialization.jsonObject(with: data!, options: .mutableContainers))
+                print(jsonObject)
+                let json = jsonObject as! NSDictionary
                 
-                let placeInfo = json["_place"] as! [String: AnyObject]
+                let placeInfo = (json["_place"] as AnyObject) as! [String: AnyObject]
                 
                 var imagePlace = UIImage(named: "header_cafeteria")
                 
-                let urlImgPlace = NSURL(string: placeInfo["image"] as! String)
-                if let data = NSData(contentsOfURL: urlImgPlace!) {
+                let urlImgPlace = Foundation.URL(string: placeInfo["image"] as! String)
+                if let data = try? Data(contentsOf: urlImgPlace!) {
                     imagePlace = UIImage(data: data)
                 }
                 
@@ -43,12 +44,12 @@ class PointAppAPI: NSObject {
                                   placeDescription: placeInfo["description"] as! String,
                                   placeImg: imagePlace!,
                                   placeColor: placeInfo["color"] as! Int,
-                                  major: placeInfo["major"] as! Int)
+                                  major: placeInfo["major"] as! NSNumber)
                 
                 var imageElement = UIImage(named: "imgMenu")
                 
-                let urlImgElement = NSURL(string: json["image"] as! String)
-                if let data = NSData(contentsOfURL: urlImgElement!) {
+                let urlImgElement = Foundation.URL(string: json["image"] as! String)
+                if let data = try? Data(contentsOf: urlImgElement!) {
                     imageElement = UIImage(data: data)
                 }
                 
@@ -66,9 +67,9 @@ class PointAppAPI: NSObject {
                                       elementDescription: description,
                                       elementImg: imageElement!,
                                       elementPlace: place,
-                                      minor: json["minor"] as! Int)
+                                      minor: json["minor"] as! NSNumber)
                 
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     completionHandler(element)
                 })
                 
@@ -76,13 +77,13 @@ class PointAppAPI: NSObject {
                 print(err)
             }
             
-            }.resume()
+            }).resume()
     }
     
     static func getDayOfWeek() -> Int {
-        let todayDate = NSDate()
-        let myCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
-        let myComponents = myCalendar?.components(.Weekday, fromDate: todayDate)
+        let todayDate = Date()
+        let myCalendar = NSCalendar(identifier: NSCalendar.Identifier.gregorian)
+        let myComponents = (myCalendar as NSCalendar?)?.components(.weekday, from: todayDate)
         let weekDay = myComponents?.weekday
         return weekDay!
     }

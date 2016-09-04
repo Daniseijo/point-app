@@ -44,45 +44,45 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     var currentElement: Element?
     
     let locationManager = CLLocationManager()
-    let region = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: "0018B4CC-1937-4981-B893-9D7191B22E35")!, identifier: "BeaconA");
+    let region = CLBeaconRegion(proximityUUID: UUID(uuidString: "0018B4CC-1937-4981-B893-9D7191B22E35")!, identifier: "BeaconA");
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         locationManager.delegate = self;
-        if (CLLocationManager.authorizationStatus() != CLAuthorizationStatus.AuthorizedWhenInUse) {
+        if (CLLocationManager.authorizationStatus() != CLAuthorizationStatus.authorizedWhenInUse) {
             locationManager.requestWhenInUseAuthorization();
         }
-        locationManager.startRangingBeaconsInRegion(region);
+        locationManager.startRangingBeacons(in: region);
         
         scrollView.delegate = self
-        elementImgBtn.imageView?.contentMode = .ScaleAspectFit
-        elementImgHeaderBtn.imageView?.contentMode = .ScaleAspectFit
+        elementImgBtn.imageView?.contentMode = .scaleAspectFit
+        elementImgHeaderBtn.imageView?.contentMode = .scaleAspectFit
         startingView.layer.zPosition = 3
         showInfoBtn.layer.zPosition = 4
-        showInfoBtn.tintColor = UIColor.blackColor()
+        showInfoBtn.tintColor = UIColor.black
         
         let fixedWidth = elementDesc.frame.size.width
-        elementDesc.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
-        let newSize = elementDesc.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
+        elementDesc.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        let newSize = elementDesc.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
         var newFrame = elementDesc.frame
         newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
         elementDesc.frame = newFrame;
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         // Header - Image
         
         placeHeaderImgView = UIImageView(frame: header.bounds)
         placeHeaderImgView?.image = UIImage(named: "header_cafeteria")
-        placeHeaderImgView?.contentMode = .ScaleAspectFill
+        placeHeaderImgView?.contentMode = .scaleAspectFill
         header.insertSubview(placeHeaderImgView, belowSubview: elementHeaderLabel)
         
         // Header - Blurred Image
         
         placeHeaderBlurImgView = UIImageView(frame: header.bounds)
-        placeHeaderBlurImgView?.image = UIImage(named: "header_cafeteria")!.blurredImageWithRadius(10, iterations: 20, tintColor: UIColor.clearColor())
-        placeHeaderBlurImgView?.contentMode = UIViewContentMode.ScaleAspectFill
+        placeHeaderBlurImgView?.image = UIImage(named: "header_cafeteria")!.blurredImage(withRadius: 10, iterations: 20, tintColor: UIColor.clear)
+        placeHeaderBlurImgView?.contentMode = UIViewContentMode.scaleAspectFill
         placeHeaderBlurImgView?.alpha = 0.0
         header.insertSubview(placeHeaderBlurImgView, belowSubview: elementHeaderLabel)
         
@@ -97,7 +97,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     // MARK: Button Actions
     
-    @IBAction func elementImgBtnTap(sender: UIButton) {
+    @IBAction func elementImgBtnTap(_ sender: UIButton) {
         let imageProvider = SomeImageProvider(element: currentElement!)
         let buttonAssets = CloseButtonAssets(normal: UIImage(named:"close_normal")!, highlighted: UIImage(named: "close_highlighted"))
         let configuration = ImageViewerConfiguration(imageSize: CGSize(width: 10, height: 10), closeButtonAssets: buttonAssets)
@@ -106,36 +106,36 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         self.presentImageViewer(imageViewer)
     }
     
-    @IBAction func showInfo(sender: UIButton) {
-        let alertController = UIAlertController(title: "Point App", message: "Daniel Seijo Sánchez ©2016", preferredStyle: .Alert)
+    @IBAction func showInfo(_ sender: UIButton) {
+        let alertController = UIAlertController(title: "Point App", message: "Daniel Seijo Sánchez ©2016", preferredStyle: .alert)
         
-        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(defaultAction)
         
-        presentViewController(alertController, animated: true, completion: nil)
+        present(alertController, animated: true, completion: nil)
     }
     
     // MARK: Auxiliar functions
-    func changingElement(newElement: Element) {
+    func changingElement(_ newElement: Element) {
         self.currentElement = newElement
         
         placeHeaderLabel.text = newElement.elementPlace?.placeName
         placeHeaderImgView.image = newElement.elementPlace?.placeImg
-        placeHeaderBlurImgView.image = newElement.elementPlace?.placeImg?.blurredImageWithRadius(10, iterations: 20, tintColor: UIColor.clearColor())
+        placeHeaderBlurImgView.image = newElement.elementPlace?.placeImg?.blurredImage(withRadius: 10, iterations: 20, tintColor: UIColor.clear)
         self.view.backgroundColor = newElement.elementPlace?.placeColor
         
         elementNameLabel.text = newElement.elementName
         elementHeaderLabel.text = newElement.elementName
         
-        elementImgBtn.setImage(newElement.elementImg, forState: .Normal)
-        elementImgHeaderBtn.setImage(newElement.elementImg, forState: .Normal)
+        elementImgBtn.setImage(newElement.elementImg, for: UIControlState())
+        elementImgHeaderBtn.setImage(newElement.elementImg, for: UIControlState())
         
         elementDesc.text = newElement.elementDescription
         
-        if !startingView.hidden {
-            startingView.hidden = true
-            showInfoBtn.tintColor = UIColor.whiteColor()
-            UIApplication.sharedApplication().statusBarStyle = .LightContent
+        if !startingView.isHidden {
+            startingView.isHidden = true
+            showInfoBtn.tintColor = UIColor.white
+            UIApplication.shared.statusBarStyle = .lightContent
         }
     }
     
@@ -144,16 +144,16 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 // MARK: - Location Manager Delegate
 extension ViewController: CLLocationManagerDelegate {
     
-    func locationManager(manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], inRegion region: CLBeaconRegion) {
+    func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         
-        var knownBeacons = beacons.filter{ $0.proximity == .Immediate }
-        knownBeacons.appendContentsOf(beacons.filter{ $0.proximity == .Near })
+        var knownBeacons = beacons.filter{ $0.proximity == .immediate }
+        knownBeacons.append(contentsOf: beacons.filter{ $0.proximity == .near })
             
         if (knownBeacons.count > 0) {
             let closestBeacon = knownBeacons[0] ;
             
             if self.currentElement == nil || closestBeacon.major != self.currentElement?.elementPlace?.major || closestBeacon.minor != self.currentElement?.minor {
-                PointAppAPI.fetchBeacon(region.proximityUUID.UUIDString, major: closestBeacon.major, minor: closestBeacon.minor) { (element) in
+                PointAppAPI.fetchBeacon(UUID: region.proximityUUID.uuidString, major: closestBeacon.major, minor: closestBeacon.minor) { (element) in
                     self.changingElement(element)
                 }
             }
@@ -164,9 +164,9 @@ extension ViewController: CLLocationManagerDelegate {
             }
             
         } else {
-            startingView.hidden = false
-            showInfoBtn.tintColor = UIColor.blackColor()
-            UIApplication.sharedApplication().statusBarStyle = .Default
+            startingView.isHidden = false
+            showInfoBtn.tintColor = UIColor.black
+            UIApplication.shared.statusBarStyle = .default
             currentElement = nil
         }
     }
@@ -176,7 +176,7 @@ extension ViewController: CLLocationManagerDelegate {
 // MARK: - Scroll View Twitter Effect [http://www.thinkandbuild.it/implementing-the-twitter-ios-app-ui/]
 extension ViewController {
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offset = scrollView.contentOffset.y
         var avatarTransform = CATransform3DIdentity
         var headerTransform = CATransform3DIdentity
@@ -256,11 +256,11 @@ class SomeImageProvider: ImageProvider {
         return 1
     }
     
-    func provideImage(completion: UIImage? -> Void) {
+    func provideImage(_ completion: (UIImage?) -> Void) {
         completion(element?.elementImg)
     }
     
-    func provideImage(atIndex index: Int, completion: UIImage? -> Void) {
+    func provideImage(atIndex index: Int, completion: (UIImage?) -> Void) {
         completion(element?.elementImg)
     }
 }

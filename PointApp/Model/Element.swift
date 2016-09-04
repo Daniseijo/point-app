@@ -43,7 +43,7 @@ class Element: NSObject {
         self.minor = minor
     }
     
-    override func setValue(value: AnyObject?, forKey key: String) {
+    override func setValue(_ value: Any?, forKey key: String) {
         if key == "_place" {
             
         } else {
