@@ -55,10 +55,10 @@ class PointAppAPI: NSObject {
                 var description = ""
                 
                 if json["type"] as? String == "timetable" {
-                    let timetable = json["description"] as! [String: AnyObject]
+                    let timetable = json["description"] as! [Int: AnyObject]
                     
                     let dayOfWeek = self.getDayOfWeek()
-                    description = timetable[String(dayOfWeek)] as! String
+                    description = timetable[dayOfWeek] as! String
                 } else {
                     description = json["description"] as! String
                 }
