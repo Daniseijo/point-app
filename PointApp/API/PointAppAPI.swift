@@ -28,7 +28,7 @@ class PointAppAPI: NSObject {
             
             do {
                 let jsonObject = try(JSONSerialization.jsonObject(with: data!, options: .mutableContainers))
-                print(jsonObject)
+                //print(jsonObject)
                 let json = jsonObject as! NSDictionary
                 
                 let placeInfo = (json["_place"] as AnyObject) as! [String: AnyObject]

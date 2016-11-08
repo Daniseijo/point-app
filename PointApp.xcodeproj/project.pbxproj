@@ -16,8 +16,8 @@
 		5E44347B1D353CE700C5439F /* PointAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E44347A1D353CE700C5439F /* PointAppTests.swift */; };
 		5E4434861D353CE700C5439F /* PointAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4434851D353CE700C5439F /* PointAppUITests.swift */; };
 		5E4434941D368C6C00C5439F /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4434931D368C6C00C5439F /* Place.swift */; };
-		5E5DEB721D7CA62E00BE5D71 /* ImageViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E5DEB6D1D7CA5D700BE5D71 /* ImageViewer.framework */; };
-		5E5DEB731D7CA62E00BE5D71 /* ImageViewer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5E5DEB6D1D7CA5D700BE5D71 /* ImageViewer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5E48B76C1DD1F8BF0062674E /* ImageViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E48B76A1DD1F8B60062674E /* ImageViewer.framework */; };
+		5E48B76D1DD1F8BF0062674E /* ImageViewer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5E48B76A1DD1F8B60062674E /* ImageViewer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5E74CDE01D5C6A1B00140490 /* DescPhotoBtnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E74CDDF1D5C6A1B00140490 /* DescPhotoBtnView.swift */; };
 		5E74CDE91D5C730400140490 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E74CDE81D5C730400140490 /* FXBlurView.m */; };
 		5E7C2E331D71EACA00BFB306 /* PointAppAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7C2E321D71EACA00BFB306 /* PointAppAPI.swift */; };
@@ -49,7 +49,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				5E5DEB731D7CA62E00BE5D71 /* ImageViewer.framework in Embed Frameworks */,
+				5E48B76D1DD1F8BF0062674E /* ImageViewer.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -72,7 +72,7 @@
 		5E4434851D353CE700C5439F /* PointAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointAppUITests.swift; sourceTree = "<group>"; };
 		5E4434871D353CE700C5439F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E4434931D368C6C00C5439F /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Place.swift; path = Model/Place.swift; sourceTree = "<group>"; };
-		5E5DEB6D1D7CA5D700BE5D71 /* ImageViewer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ImageViewer.framework; sourceTree = "<group>"; };
+		5E48B76A1DD1F8B60062674E /* ImageViewer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ImageViewer.framework; sourceTree = "<group>"; };
 		5E74CDDF1D5C6A1B00140490 /* DescPhotoBtnView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DescPhotoBtnView.swift; path = View/DescPhotoBtnView.swift; sourceTree = "<group>"; };
 		5E74CDE61D5C730300140490 /* PointApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PointApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		5E74CDE71D5C730400140490 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
@@ -87,7 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E5DEB721D7CA62E00BE5D71 /* ImageViewer.framework in Frameworks */,
+				5E48B76C1DD1F8BF0062674E /* ImageViewer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,7 +185,7 @@
 		5E74CDE21D5C71FF00140490 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
-				5E5DEB6D1D7CA5D700BE5D71 /* ImageViewer.framework */,
+				5E48B76A1DD1F8B60062674E /* ImageViewer.framework */,
 				5E74CDE71D5C730400140490 /* FXBlurView.h */,
 				5E74CDE81D5C730400140490 /* FXBlurView.m */,
 				5E74CDE61D5C730300140490 /* PointApp-Bridging-Header.h */,

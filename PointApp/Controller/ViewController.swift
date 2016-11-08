@@ -150,8 +150,9 @@ extension ViewController: CLLocationManagerDelegate {
         knownBeacons.append(contentsOf: beacons.filter{ $0.proximity == .near })
             
         if (knownBeacons.count > 0) {
-            let closestBeacon = knownBeacons[0] ;
+            let closestBeacon = knownBeacons[0]
             
+            print(CLProximity2String(proximity: closestBeacon.proximity))
             if self.currentElement == nil || closestBeacon.major != self.currentElement?.elementPlace?.major || closestBeacon.minor != self.currentElement?.minor {
                 PointAppAPI.fetchBeacon(UUID: region.proximityUUID.uuidString, major: closestBeacon.major, minor: closestBeacon.minor) { (element) in
                     self.changingElement(element)
@@ -171,6 +172,18 @@ extension ViewController: CLLocationManagerDelegate {
         }
     }
     
+    func CLProximity2String(proximity: CLProximity) -> String {
+        switch proximity {
+        case .far:
+            return "Far";
+        case .immediate:
+            return "Inmediate";
+        case .near:
+            return "Near";
+        case .unknown:
+            return "Unknown";
+        }
+    }
 }
 
 // MARK: - Scroll View Twitter Effect [http://www.thinkandbuild.it/implementing-the-twitter-ios-app-ui/]
