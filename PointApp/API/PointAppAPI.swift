@@ -22,13 +22,12 @@ class PointAppAPI: NSObject {
         URLSession.shared.dataTask(with: request as URLRequest, completionHandler: { (data,response,error) in
             
             if error != nil {
-                print (error)
                 return
             }
             
             do {
                 let jsonObject = try(JSONSerialization.jsonObject(with: data!, options: .mutableContainers))
-                //print(jsonObject)
+                
                 let json = jsonObject as! NSDictionary
                 
                 let placeInfo = (json["_place"] as AnyObject) as! [String: AnyObject]
@@ -55,14 +54,13 @@ class PointAppAPI: NSObject {
                 
                 var description = ""
                 
-//                if json["type"] as? String == "timetable" {
-//                    let timetable = json["description"] as! [Int: AnyObject]
-//                    
-//                    let dayOfWeek = self.getDayOfWeek()
-//                    description = timetable[dayOfWeek] as! String
-//                } else {
+                if json["type"] as? String == "timetable" {
+                    let timetable = json["description"] as! [String: String]
+                    let dayOfWeek = self.getDayOfWeek()
+                    description = timetable[dayOfWeek]! as String
+                } else {
                     description = json["description"] as! String
-//                }
+                }
                 let element = Element(elementName: json["name"] as! String,
                                       elementDescription: description,
                                       elementImg: imageElement!,
@@ -80,11 +78,11 @@ class PointAppAPI: NSObject {
             }).resume()
     }
     
-    static func getDayOfWeek() -> Int {
+    static func getDayOfWeek() -> String {
         let todayDate = Date()
         let myCalendar = NSCalendar(identifier: NSCalendar.Identifier.gregorian)
         let myComponents = (myCalendar as NSCalendar?)?.components(.weekday, from: todayDate)
         let weekDay = myComponents?.weekday
-        return weekDay!
+        return String(weekDay!)
     }
 }
