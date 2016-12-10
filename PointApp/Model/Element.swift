@@ -43,14 +43,6 @@ class Element: NSObject {
         self.minor = minor
     }
     
-    override func setValue(_ value: Any?, forKey key: String) {
-        if key == "_place" {
-            
-        } else {
-            super.setValue(value, forKey: key)
-        }
-    }
-    
     override var description: String {
         return "name: \(elementName)" +
             "description: \(elementDescription)" +

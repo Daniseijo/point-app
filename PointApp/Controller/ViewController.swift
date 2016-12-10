@@ -96,7 +96,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     }
     
     // MARK: Button Actions
-    
     @IBAction func elementImgBtnTap(_ sender: UIButton) {
         let imageProvider = SomeImageProvider(element: currentElement!)
         let buttonAssets = CloseButtonAssets(normal: UIImage(named:"close_normal")!, highlighted: UIImage(named: "close_highlighted"))

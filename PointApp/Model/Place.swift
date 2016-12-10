@@ -44,47 +44,6 @@ class Place: NSObject {
         self.major = major
     }
     
-//    func persist(place: Place) {
-//        if place.placeName == nil || place.placeName?.characters.count == 0 {
-//            return
-//        }
-//        
-//        var places = 
-//    }
-    
-//    - (void) persist:(Location*)location
-//    {
-//    if (!location || location.name == nil || location.name.length == 0) {
-//    return; //input safety check
-//    }
-//    
-//    
-//    NSString* locations = [kBaseURL stringByAppendingPathComponent:kLocations];
-//    
-//    BOOL isExistingLocation = location._id != nil;
-//    NSURL* url = isExistingLocation ? [NSURL URLWithString:[locations stringByAppendingPathComponent:location._id]] :
-//    [NSURL URLWithString:locations]; //1
-//    
-//    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
-//    request.HTTPMethod = isExistingLocation ? @"PUT" : @"POST"; //2
-//    
-//    NSData* data = [NSJSONSerialization dataWithJSONObject:[location toDictionary] options:0 error:NULL]; //3
-//    request.HTTPBody = data;
-//    
-//    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"]; //4
-//    
-//    NSURLSessionConfiguration* config = [NSURLSessionConfiguration defaultSessionConfiguration];
-//    NSURLSession* session = [NSURLSession sessionWithConfiguration:config];
-//    
-//    NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) { //5
-//    if (!error) {
-//    NSArray* responseArray = @[[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL]];
-//    [self parseAndAddLocations:responseArray toArray:self.objects];
-//    }
-//    }];
-//    [dataTask resume];
-//    }
-    
     override var description: String {
         return "name: \(placeName)" +
             "description: \(placeDescription)" +
