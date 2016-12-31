@@ -30,8 +30,10 @@ class Place: NSObject {
      Initialize the Place object.
      
      - parameters:
-        - name: The name of the Place.
+        - placeName: The name of the Place.
         - placeDescription: The description of the Place.
+        - placeImg: The image of the Place.
+        - placeColor: The color attached to the Place.
         - major: The ID number of the place inside the App.
      - returns: An initialized Place object, or nil if the object could not be created for some reason that would not result in an exception.
      */

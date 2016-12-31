@@ -41,20 +41,23 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     var blurredHeaderImageView:UIImageView?
     
+    // Element var
     var currentElement: Element?
     
+    // Location Manager constants
     let locationManager = CLLocationManager()
     let region = CLBeaconRegion(proximityUUID: UUID(uuidString: "0018B4CC-1937-4981-B893-9D7191B22E35")!, identifier: "BeaconA");
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        // Location manager initializers.
         locationManager.delegate = self;
         if (CLLocationManager.authorizationStatus() != CLAuthorizationStatus.authorizedWhenInUse) {
             locationManager.requestWhenInUseAuthorization();
         }
         locationManager.startRangingBeacons(in: region);
         
+        // Interface adjustments.
         scrollView.delegate = self
         elementImgBtn.imageView?.contentMode = .scaleAspectFit
         elementImgHeaderBtn.imageView?.contentMode = .scaleAspectFit
@@ -71,15 +74,14 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        // Header - Image
+        // Header - Image.
         
         placeHeaderImgView = UIImageView(frame: header.bounds)
         placeHeaderImgView?.image = UIImage(named: "header_cafeteria")
         placeHeaderImgView?.contentMode = .scaleAspectFill
         header.insertSubview(placeHeaderImgView, belowSubview: elementHeaderLabel)
         
-        // Header - Blurred Image
-        
+        // Header - Blurred Image.
         placeHeaderBlurImgView = UIImageView(frame: header.bounds)
         placeHeaderBlurImgView?.image = UIImage(named: "header_cafeteria")!.blurredImage(withRadius: 10, iterations: 20, tintColor: UIColor.clear)
         placeHeaderBlurImgView?.contentMode = UIViewContentMode.scaleAspectFill
@@ -143,7 +145,9 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 // MARK: - Location Manager Delegate
 extension ViewController: CLLocationManagerDelegate {
     
-    func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
+    func locationManager(_ manager: CLLocationManager,
+                         didRangeBeacons beacons: [CLBeacon],
+                         in region: CLBeaconRegion) {
         
         var knownBeacons = beacons.filter{ $0.proximity == .immediate }
         knownBeacons.append(contentsOf: beacons.filter{ $0.proximity == .near })
@@ -151,8 +155,12 @@ extension ViewController: CLLocationManagerDelegate {
         if (knownBeacons.count > 0) {
             let closestBeacon = knownBeacons[0]
             
-            if self.currentElement == nil || closestBeacon.major != self.currentElement?.elementPlace?.major || closestBeacon.minor != self.currentElement?.minor {
-                PointAppAPI.fetchBeacon(UUID: region.proximityUUID.uuidString, major: closestBeacon.major, minor: closestBeacon.minor) { (element) in
+            if self.currentElement == nil ||
+                closestBeacon.major != self.currentElement?.elementPlace?.major ||
+                closestBeacon.minor != self.currentElement?.minor {
+                PointAppAPI.fetchBeacon(UUID: region.proximityUUID.uuidString,
+                                        major: closestBeacon.major,
+                                        minor: closestBeacon.minor) { (element) in
                     self.changingElement(element)
                 }
             }
@@ -167,19 +175,6 @@ extension ViewController: CLLocationManagerDelegate {
             showInfoBtn.tintColor = UIColor.black
             UIApplication.shared.statusBarStyle = .default
             currentElement = nil
-        }
-    }
-    
-    func CLProximity2String(proximity: CLProximity) -> String {
-        switch proximity {
-        case .far:
-            return "Far";
-        case .immediate:
-            return "Inmediate";
-        case .near:
-            return "Near";
-        case .unknown:
-            return "Unknown";
         }
     }
 }

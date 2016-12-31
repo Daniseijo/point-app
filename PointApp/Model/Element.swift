@@ -28,8 +28,10 @@ class Element: NSObject {
      Initialize the Element object.
      
      - parameters:
-     - name: The name of the Element.
-     - placeDescription: The description of the Element.
+     - elementName: The name of the Element.
+     - elementDescription: The description of the Element.
+     - elementImg: The image of the Element.
+     - elementPlace: The linked Place of the Element.
      - minor: The ID number of the element inside the Place.
      - returns: An initialized Element object, or nil if the object could not be created for some reason that would not result in an exception.
      */
@@ -39,7 +41,6 @@ class Element: NSObject {
         self.elementDescription = elementDescription
         self.elementImg = elementImg
         self.elementPlace = elementPlace
-        
         self.minor = minor
     }
     
