@@ -108,7 +108,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func showInfo(_ sender: UIButton) {
-        let alertController = UIAlertController(title: "Point App", message: "Daniel Seijo Sánchez ©2016", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Point App", message: "Daniel Seijo Sánchez ©2017", preferredStyle: .alert)
         
         let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(defaultAction)
